@@ -55,17 +55,19 @@ for cr in crit:
                 cr_0 = cr
                 est_0 = estimators
                 dep = depth
-print(cr_0)
-print(est_0)
-print(dep)
-print(acc_0)
+print("RandomForest")
+print("criterion: ",cr_0)
+print("n_estimators: ",est_0)
+print("max_depth: ",dep)
+print("accuracy validation: ",acc_0)
 
 model = RandomForestClassifier(n_estimators=est_0, max_depth=dep, criterion=cr_0)
 model.fit(train_x, train_y['Survived'])
 predict = model.predict(test_x)
 acc = accuracy_score(test_y['Survived'], predict)
 
-print(acc)
+print("accuracy test: ",acc)
+print()
 
 # подбор гиперпараметров для XGBoost
 acc_0 = 0
@@ -81,16 +83,17 @@ for estimators in range(1,20):
       acc_0 = acc
       est_0 = estimators
       dep = depth
-
-print(est_0)
-print(dep)
-print(acc_0)
+print("XGBoost")
+print("n_estimators: ",est_0)
+print("max_depth: ",dep)
+print("accuracy validation: ",acc_0)
 
 model = XGBClassifier(n_estimators=estimators, max_depth=depth)
 model.fit(train_x, train_y['Survived'])
 predict = model.predict(test_x)
 acc = accuracy_score(test_y['Survived'], predict)
-print(acc)
+print("accuracy test: ",acc)
+print()
 
 # подбор гиперпараметров для LogisticRegression
 solv = ("lbfgs", "liblinear", "newton-cg", "sag", "saga")
@@ -106,17 +109,18 @@ for c in сс:
     if acc_0 < acc:
       sol_0 = sol
       c_0 = c
-
-print(c_0)
-print(sol_0)
-print(acc_0)
+print("LogisticRegression")
+print("c: ",c_0)
+print("solver: ",sol_0)
+print("accuracy validation: ",acc_0)
 
 model = LogisticRegression(C=c, solver=sol)
 model.fit(train_x, train_y['Survived'])
 predict = model.predict(test_x)
 acc = accuracy_score(test_y['Survived'], predict)
 
-print(acc)
+print("accuracy test: ",acc)
+print()
 
 # метод ближайших соседей
 # alg = ("auto", "ball_tree", "kd_tree", "brute")
@@ -137,16 +141,17 @@ acc = accuracy_score(validate_y['Survived'], predict)
       #   neib_0 = neib
       #   alg_0 = algo
       #   leaf_0 = leaf
-
+# ggggg
 # print(alg_0)
 # print(neib_0)
 # print(leaf_0)
-print(acc)
+print("KNN")
+print("accuracy validation: ",acc)
 
 model = KNeighborsClassifier()
 model.fit(train_x, train_y['Survived'])
 predict = model.predict(test_x)
 acc = accuracy_score(test_y['Survived'], predict)
 
-print(acc)
+print("accuracy test: ",acc)
 
